@@ -23,6 +23,10 @@
             <label for="">Alamat Instansi Penerima</label>
             <input type="text" class="form-control" id="addAlamatInstansi" name="addAlamatInstansi">
         </div>
+        <div class="form-group">
+            <label for="">Keterangan</label>
+            <input type="text" class="form-control" id="addKeterangan" name="addKeterangan">
+        </div>
         <button type="submit" class="btn btn-primary">Tambah Laporan</button>
     </form>
 </div>
