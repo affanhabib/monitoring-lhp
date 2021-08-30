@@ -24,3 +24,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('pengirim', function () { return view('pengirim'); })->middleware(['checkRole:pengirim,tl']);
 Route::get('/daftar-pengiriman-laporan', function () { return view('daftarPengiriman'); })->middleware(['checkRole:pengirim,tl']);
 Route::get('/daftar-laporan-terkirim', function () { return view('daftarTerkirim'); })->middleware(['checkRole:tl']);
+Route::get('/tambah-pengiriman-laporan', function () { return view('tambahLaporan'); })->middleware(['checkRole:tl']);
