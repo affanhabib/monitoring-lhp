@@ -20,16 +20,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
-    <!-- CSS Bootstrap  -->
-    @stack('styles')
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+
 </head>
 <body>
-    <div id="app">
+    <div>
         <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #003780">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/home') }}">
-                    {{-- Dashboard Pemantauan Laporan Hasil Pengawasan --}}
                     <img src="{{ asset('img/BPKP_Logo.png') }}" alt="" width="10%" height="10%">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -49,11 +49,6 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            {{-- @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif --}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -77,12 +72,40 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container py-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/daftar-pengiriman-laporan">Pengiriman Laporan</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Konfirmasi Pengiriman Laporan</li>
+                </ol>
+            </nav>
+            <h4 class="mb-3">Konfirmasi Pengiriman Laporan</h4>
+            <div id='map' style='width: 100%; height: 500px;'></div>
+            <div class="pt-2">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="">Unggah Foto Tanda Tangan Terima Laporan</label>
+                        <input type="file" class="form-control" id="namaLaporan" name="namaLaporan" accept="image/jpeg, image/png">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Keterangan</label>
+                        <textarea class="form-control" id="keterangan" name="keterangan" rows='3'></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Konfirmasi Pengiriman Laporan</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- javascript for bootstrap -->
-    @stack('scripts')
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWZmYW5oYWJpYjExIiwiYSI6ImNrc3pvMjR3czJlaTcyb3F6aW9zODFpZ20ifQ.-sESoz0VZ57XtcvhNsKRQg';
+            const map = new mapboxgl.Map({
+                container: 'map', // container ID
+                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                center: [-74.5, 40], // starting position [lng, lat]
+                zoom: 9 // starting zoom
+            });
+    </script>
 </body>
 </html>

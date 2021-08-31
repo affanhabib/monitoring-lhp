@@ -26,3 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/daftar-pengiriman-laporan', 'LaporanController')->middleware('checkRole:pengirim,tl');
 Route::get('/daftar-laporan-terkirim', 'LaporanController@terkirim')->middleware(['checkRole:tl']);
 //Route::get('/tambah-pengiriman-laporan', function () { return view('tambahLaporan'); })->middleware(['checkRole:tl']);
+Route::get('/tambah-pengiriman-laporan', function () { return view('tambahLaporan'); })->middleware(['checkRole:tl']);
+// Route::get('/konfirmasi-pengiriman', function () { return view('livewire/map-location'); })->middleware('checkRole:pengirim,tl');
+Route::get('/konfirmasi-pengiriman', function () { return view('konfirmasiPengiriman'); })->middleware('checkRole:pengirim,tl');
