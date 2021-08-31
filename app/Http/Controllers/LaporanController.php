@@ -27,6 +27,7 @@ class LaporanController extends Controller
     public function create()
     {
         //
+        return view('tambahLaporan');
     }
 
     /**
@@ -38,6 +39,23 @@ class LaporanController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+        $this->validate($request,[
+            'namaLaporan'=>'required',
+            'instansiPenerima'=>'required',
+            'alamatInstansi'=>'required',
+        ]);
+
+        $laporan = new Laporan();
+
+        $laporan->nama_laporan = $request->input('namaLaporan');
+        $laporan->instansi_penerima = $request->input('instansiPenerima');
+        $laporan->alamat_instansi = $request->input('alamatInstansi');
+        $laporan->keterangan = $request->input('keterangan');
+
+        $laporan->save();
+
+        return redirect()->route('daftar-pengiriman-laporan.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -49,8 +67,6 @@ class LaporanController extends Controller
     public function show($id)
     {
         //
-        $laporans = Laporan::findOrFail($id);
-        return redirect('/daftar-pengiriman-laporan')->with('laporans', $laporans);
     }
 
     /**
@@ -62,6 +78,8 @@ class LaporanController extends Controller
     public function edit($id)
     {
         //
+        $laporan = Laporan::findOrFail($id);
+        return view('editLaporan', compact('laporan'));
     }
 
     /**
@@ -74,6 +92,22 @@ class LaporanController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'namaLaporan'=>'required',
+            'instansiPenerima'=>'required',
+            'alamatInstansi'=>'required',
+        ]);
+
+        $laporan = Laporan::findOrFail($id);
+
+        $laporan->nama_laporan = $request->input('namaLaporan');
+        $laporan->instansi_penerima = $request->input('instansiPenerima');
+        $laporan->alamat_instansi = $request->input('alamatInstansi');
+        $laporan->keterangan = $request->input('keterangan');
+
+        $laporan->save();
+        return redirect('daftar-pengiriman-laporan')->with('success', 'Data Berhasil Diperbarui');
+
     }
 
     /**
@@ -85,6 +119,9 @@ class LaporanController extends Controller
     public function destroy($id)
     {
         //
+        $laporan = Laporan::findOrFail($id);
+        $laporan->delete();
+        return redirect('daftar-pengiriman-laporan')->with('success', 'Data Berhasil Dihapus');
     }
 
     //funtion for daftarLaporanTerkirm view

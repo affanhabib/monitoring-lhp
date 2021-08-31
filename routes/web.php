@@ -25,4 +25,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/daftar-pengiriman-laporan', function () { return view('daftarPengiriman'); })->middleware(['checkRole:pengirim,tl']);
 Route::resource('/daftar-pengiriman-laporan', 'LaporanController')->middleware('checkRole:pengirim,tl');
 Route::get('/daftar-laporan-terkirim', 'LaporanController@terkirim')->middleware(['checkRole:tl']);
-Route::get('/tambah-pengiriman-laporan', function () { return view('tambahLaporan'); })->middleware(['checkRole:tl']);
+//Route::get('/tambah-pengiriman-laporan', function () { return view('tambahLaporan'); })->middleware(['checkRole:tl']);
