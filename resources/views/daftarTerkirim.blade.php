@@ -29,7 +29,7 @@
                     <td>{{ $laporan->alamat_instansi }}</td>
                     <td>
                         <a href="#" class="btn btn-primary">Detail</a>
-                        <a href="/tindak-lanjut" class="btn btn-success">Konfirmasi</a>
+                        <a href="/tindak-lanjut" class="btn btn-success">Tindak Lanjut</a>
                     </td>
                 </tr>
             @endif
