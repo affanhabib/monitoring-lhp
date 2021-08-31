@@ -81,25 +81,47 @@
                 </ol>
             </nav>
             <h4 class="mb-3">Konfirmasi Pengiriman Laporan</h4>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div><br />
+            @endif
             <div id='map' style='width: 100%; height: 400px;'></div>
             <div class="pt-2">
-                <form action="" method="POST">
+                <form action="{{route('konfirmasi-pengiriman.update', $laporan->id )}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="form-group" id="coordinates">
                         <label for="longitude">Longitude</label>
-                        <input type="text" class="form-control" name="longitude" id="longitude">
+                        <input type="text" class="form-control" name="longitude" id="longitude" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="latitude">Latitude</label>
-                        <input type="text" class="form-control" name="latitude" id="latitude">
+                        <input type="text" class="form-control" name="latitude" id="latitude" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nama Laporan</label>
+                        <input type="text" class="form-control" name="namaLaporan" id="namaLaporan" value="{{$laporan->nama_laporan}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Instansi Penerima</label>
+                        <input type="text" class="form-control" name="instansiPenerima" id="instansiPenerima" value="{{$laporan->instansi_penerima}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nama Penerima</label>
+                        <input type="text" class="form-control" name="namaPenerima" id="namaPenerima" required>
                     </div>
                     <div class="form-group">
                         <label for="">Unggah Foto Tanda Tangan Terima Laporan</label>
-                        <input type="file" class="form-control" id="namaLaporan" name="namaLaporan" accept="image/jpeg, image/png">
+                        <input type="file" class="form-control" id="gambarLaporan" name="gambarLaporan" accept="image/jpeg, image/png" required>
                     </div>
                     <div class="form-group">
                         <label for="">Keterangan</label>
-                        <textarea class="form-control" id="keterangan" name="keterangan" rows='3'></textarea>
+                        <textarea class="form-control" id="keterangan" name="keterangan" rows='3' >{{$laporan->keterangan}}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Konfirmasi Pengiriman Laporan</button>
                 </form>

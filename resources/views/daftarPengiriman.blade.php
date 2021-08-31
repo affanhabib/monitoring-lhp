@@ -62,7 +62,7 @@
                         <form action="{{route('daftar-pengiriman-laporan.destroy', $laporan->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                            <a href="/konfirmasi-pengiriman" class="btn btn-success">Konfirmasi</a>
+                            <a href="{{route('konfirmasi-pengiriman.edit', $laporan->id)}}" class="btn btn-success">Konfirmasi</a>
                             @if(Auth::user()->role == "tl")
                                 <a href="{{route('daftar-pengiriman-laporan.edit', $laporan->id)}}" class="btn btn-warning">Edit</a>
                                 <button class="btn btn-danger" type='submit'><i class="fa fa-trash"></i>Hapus</button>

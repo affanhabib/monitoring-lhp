@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="">Alamat Instansi Penerima</label>
-            <input type="text" class="form-control" id="alamatInstansi" name="alamatInstansi" value="{{$laporan->instansi_penerima}}">
+            <input type="text" class="form-control" id="alamatInstansi" name="alamatInstansi" value="{{$laporan->alamat_instansi}}">
         </div>
         <div class="form-group">
             <label for="">Keterangan</label>

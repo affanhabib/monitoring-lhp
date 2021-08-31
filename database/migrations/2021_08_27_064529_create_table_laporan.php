@@ -22,6 +22,7 @@ class CreateTableLaporan extends Migration
             $table->string('nama_penerima')->nullable();
             $table->string('alamat_instansi');
             $table->text('keterangan')->nullable();
+            $table->string('image')->nullable();
             $table->enum('isTerkirim', [0, 1])->default(0);
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
