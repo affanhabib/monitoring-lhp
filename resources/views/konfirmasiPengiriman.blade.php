@@ -81,10 +81,18 @@
                 </ol>
             </nav>
             <h4 class="mb-3">Konfirmasi Pengiriman Laporan</h4>
-            <div id='map' style='width: 100%; height: 500px;'></div>
+            <div id='map' style='width: 100%; height: 400px;'></div>
             <div class="pt-2">
                 <form action="" method="POST">
                     @csrf
+                    <div class="form-group" id="coordinates">
+                        <label for="longitude">Longitude</label>
+                        <input type="text" class="form-control" name="longitude" id="longitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="text" class="form-control" name="latitude" id="latitude">
+                    </div>
                     <div class="form-group">
                         <label for="">Unggah Foto Tanda Tangan Terima Laporan</label>
                         <input type="file" class="form-control" id="namaLaporan" name="namaLaporan" accept="image/jpeg, image/png">
@@ -100,12 +108,44 @@
     </div>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiYWZmYW5oYWJpYjExIiwiYSI6ImNrc3pvMjR3czJlaTcyb3F6aW9zODFpZ20ifQ.-sESoz0VZ57XtcvhNsKRQg';
-            const map = new mapboxgl.Map({
-                container: 'map', // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [-74.5, 40], // starting position [lng, lat]
-                zoom: 9 // starting zoom
-            });
+        var map = new mapboxgl.Map({
+	        container: 'map', // container id
+	        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+	        center: [117.75715627739743, -4.80390981848582], // starting position [lng, lat]
+	        zoom: 3 // starting zoom
+	    });
+
+	    map.addControl(
+			new mapboxgl.GeolocateControl({
+				positionOptions: {
+					enableHighAccuracy: true
+				},
+				trackUserLocation: true
+			})
+		);
+
+		var marker = new mapboxgl.Marker({
+			draggable: true
+		})
+			.setLngLat([117.75715627739743, -4.80390981848582])
+			.addTo(map);
+
+		function onDragEnd() {
+			var lngLat = marker.getLngLat();
+			coordinates.style.display = 'block';
+			document.getElementById('longitude').value = lngLat.lng;
+			document.getElementById('latitude').value = lngLat.lat;
+		}
+			 
+		marker.on('dragend', onDragEnd);
+
+		map.addControl(new mapboxgl.NavigationControl());
+
+		ClassicEditor
+	        .create( document.querySelector( '#deskripsi' ) )
+	        .catch( error => {
+	            console.error( error );
+        });
     </script>
 </body>
 </html>
