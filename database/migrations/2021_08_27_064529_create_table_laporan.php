@@ -14,10 +14,17 @@ class CreateTableLaporan extends Migration
     public function up()
     {
         Schema::create('table_laporan', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
+            $table->unsignedBigInteger('pengirim_id')->nullable();
+            $table->foreign('pengirim_id')->references('id')->on('users');
             $table->string('nama_laporan');
             $table->string('instansi_penerima');
+            $table->string('nama_penerima')->nullable();
+            $table->string('alamat_instansi');
+            $table->text('keterangan')->nullable();
             $table->enum('isTerkirim', [0, 1])->default(0);
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->timestamps();
         });
     }

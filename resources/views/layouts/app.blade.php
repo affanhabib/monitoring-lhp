@@ -20,6 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- CSS Bootstrap  -->
+    @stack('styles')
 </head>
 <body>
     <div id="app">
@@ -79,5 +82,7 @@
             @yield('content')
         </main>
     </div>
+    <!-- javascript for bootstrap -->
+    @stack('scripts')
 </body>
 </html>
