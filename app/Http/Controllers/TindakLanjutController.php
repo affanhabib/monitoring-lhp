@@ -22,9 +22,10 @@ class TindakLanjutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+       
     }
 
     /**
@@ -33,9 +34,10 @@ class TindakLanjutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //
+                
     }
 
     /**
@@ -47,6 +49,9 @@ class TindakLanjutController extends Controller
     public function show($id)
     {
         //
+        $tindakLanjuts = TindakLanjut::where('laporan_id', $id)->first();
+        // dd($tindakLanjuts);
+        return view('detailTindakLanjut', compact('tindakLanjuts'));
     }
 
     /**
@@ -58,6 +63,7 @@ class TindakLanjutController extends Controller
     public function edit($id)
     {
         //
+        return view('tindakLanjut', compact('id'));
     }
 
     /**
@@ -70,6 +76,22 @@ class TindakLanjutController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $tindakLanjuts = new Tindaklanjut();
+
+        $fileName = $request->lampiran->getClientOriginalName() . '-' . time() . '.' . $request->lampiran->extension();
+        
+        $request->lampiran->move(public_path('lampiran'), $fileName);
+
+        $tindakLanjuts->laporan_id = $id;
+        $tindakLanjuts->jumlah_tindaklanjut = $request->input('jumlahTindakLanjut');
+        $tindakLanjuts->tanggal_tindaklanjut = $request->input('tanggalTindakLanjut');
+        $tindakLanjuts->file = $fileName;
+        $tindakLanjuts->keterangan = $request->input('keterangan');
+
+        $tindakLanjuts->save();
+
+        return redirect('daftar-laporan-terkirim')->with('success', 'Tindak Lanjut Berhasil Dibuat');
+       
     }
 
     /**

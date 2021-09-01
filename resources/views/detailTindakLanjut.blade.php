@@ -10,26 +10,24 @@
             </ol>
         </nav>
         <h4 class="mb-3">Tindak Lanjut Laporan</h4>
-        <form action="{{route('tindak-lanjut.update', $id)}}" method="POST" enctype="multipart/form-data">>
-            @csrf
-            @method('PUT')
+        <form action="" method="">
             <div class="form-group">
                 <label for="">Jumlah Tindak Lanjut</label>
-                <input type="text" class="form-control" id="jumlahTindakLanjut" name="jumlahTindakLanjut" required>
+                <input type="text" class="form-control" id="jumlahTindakLanjut" name="jumlahTindakLanjut" value="{{$tindakLanjuts->jumlah_tindaklanjut}}" readonly>
             </div>
             <div class="form-group">
                 <label for="">Tanggal Tindak Lanjut</label>
-                <input type="date" class="form-control" id="tanggalTindakLanjut" name="tanggalTindakLanjut" required>
+                <input type="date" class="form-control" id="tanggalTindakLanjut" name="tanggalTindakLanjut" value="{{$tindakLanjuts->tanggal_tindaklanjut}}" readonly>
             </div>
             <div class="form-group">
                 <label for="">Lampiran</label>
-                <input type="file" class="form-control" id="lampiran" name="lampiran" required>
+                <input type="file" class="form-control" id="lampiran" name="lampiran" value="{{$tindakLanjuts->file}}" readonly>
             </div>
             <div class="form-group">
                 <label for="">Keterangan</label>
-                <textarea class="form-control" id="keterangan" name="keterangan" rows='3' required></textarea>
+                <textarea class="form-control" id="keterangan" name="keterangan" rows='3' readonly>{{$tindakLanjuts->keterangan}}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Tambah Tindak Lanjut</button>
+            <a href="{{route('konfirmasi-pengiriman.index')}}" class="btn btn-primary">Kembali</a>
         </form>
     </div>
 @endsection
