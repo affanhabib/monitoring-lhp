@@ -50,10 +50,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($laporans as $key=>$laporan)
+            @php $i=1 @endphp
+            @foreach($laporans as $laporan)
             @if($laporan->isTerkirim != 1)
                 <tr>
-                    <td>{{ $key+1 }}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{{ $laporan->nama_laporan }}</td>
                     <td>{{ $laporan->instansi_penerima }}</td>
                     <td>{{ $laporan->alamat_instansi }}</td>

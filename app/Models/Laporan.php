@@ -8,4 +8,8 @@ class Laporan extends Model
 {
     //
     protected $table = 'table_laporan';
+
+    public function getTindakLanjutRelation(){
+        return $this->hasOne('App\Models\TindakLanjut','laporan_id','id');
+    }
 }

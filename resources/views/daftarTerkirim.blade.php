@@ -20,16 +20,21 @@
             </tr>
         </thead>
         <tbody>
+            @php $i=1 @endphp
             @foreach($laporans as $laporan)
             @if($laporan->isTerkirim == 1)
                 <tr>
-                    <td>{{ $laporan->id }}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{{ $laporan->nama_laporan }}</td>
                     <td>{{ $laporan->instansi_penerima }}</td>
                     <td>{{ $laporan->alamat_instansi }}</td>
                     <td>
                         <a href="{{route('konfirmasi-pengiriman.show', $laporan->id)}}" class="btn btn-primary">Detail</a>
-                        <a href="/tindak-lanjut" class="btn btn-success">Tindak Lanjut</a>
+                        @if($laporan->getTindakLanjutRelation == null)
+                            <a href="/tindak-lanjut" class="btn btn-success">Tindak Lanjut</a>
+                        @else
+                            <a href="/tindak-lanjut" class="btn btn-success">Detail Tindak Lanjut</a>
+                        @endif
                     </td>
                 </tr>
             @endif

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Laporan;
 use App\Models\TindakLanjut;
-use Auth;
 
-class KonfirmasiLaporanController extends Controller
+class TindakLanjutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,6 @@ class KonfirmasiLaporanController extends Controller
     public function index()
     {
         //
-        $laporans = Laporan::all();
-        // echo "<pre>";
-        // print_r($laporans);
-        return view('daftarTerkirim', compact('laporans'));
     }
 
     /**
@@ -31,7 +25,6 @@ class KonfirmasiLaporanController extends Controller
     public function create()
     {
         //
-        
     }
 
     /**
@@ -54,8 +47,6 @@ class KonfirmasiLaporanController extends Controller
     public function show($id)
     {
         //
-        $laporans = Laporan::findOrFail($id);
-        return view('detailPengiriman', compact('laporans'));
     }
 
     /**
@@ -67,8 +58,6 @@ class KonfirmasiLaporanController extends Controller
     public function edit($id)
     {
         //
-        $laporan = Laporan::findOrFail($id);
-        return view('konfirmasiPengiriman', compact('laporan'));
     }
 
     /**
@@ -81,32 +70,6 @@ class KonfirmasiLaporanController extends Controller
     public function update(Request $request, $id)
     {
         //
-        //dd($request);
-        $this->validate($request,[
-            'longitude'=>'required',
-            'latitude'=>'required',
-            'namaPenerima'=>'required',
-            'gambarLaporan'=>'required',
-        ]);
-
-        $laporan = Laporan::findOrFail($id);
-
-        $imgName = $request->gambarLaporan->getClientOriginalName() . '-' . time() . '.' . $request->gambarLaporan->extension();
-        
-        $request->gambarLaporan->move(public_path('image'), $imgName);
-
-        $laporan->pengirim_id = Auth::user()->id;
-        $laporan->longitude = $request->input('longitude');
-        $laporan->latitude = $request->input('latitude');
-        $laporan->nama_penerima = $request->input('namaPenerima');
-        $laporan->image = $imgName;
-        $laporan->isTerkirim = 2;
-        $laporan->keterangan = $request->input('keterangan');
-
-        $laporan->save();
-
-        return redirect('daftar-pengiriman-laporan')->with('success', 'Data Berhasil Dikonfirmasi');
-
     }
 
     /**
