@@ -30,4 +30,4 @@ Route::get('/tambah-pengiriman-laporan', function () { return view('tambahLapora
 // Route::get('/konfirmasi-pengiriman', function () { return view('livewire/map-location'); })->middleware('checkRole:pengirim,tl');
 //Route::get('/konfirmasi-pengiriman', function () { return view('konfirmasiPengiriman'); })->middleware('checkRole:pengirim,tl');
 Route::resource('/konfirmasi-pengiriman', 'KonfirmasiLaporanController')->middleware('checkRole:pengirim,tl');
-route::get('/tindak-lanjut', function () { return view('tindakLanjut'); })->middleware('checkRole:tl');
+Route::get('/tindak-lanjut', function () { return view('tindakLanjut'); })->middleware('checkRole:tl');

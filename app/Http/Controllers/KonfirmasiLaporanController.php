@@ -16,6 +16,8 @@ class KonfirmasiLaporanController extends Controller
     public function index()
     {
         //
+        $laporans = Laporan::all();
+        return view('daftarTerkirim', compact('laporans'));
     }
 
     /**
@@ -49,6 +51,8 @@ class KonfirmasiLaporanController extends Controller
     public function show($id)
     {
         //
+        $laporans = Laporan::findOrFail($id);
+        return view('detailPengiriman', compact('laporans'));
     }
 
     /**

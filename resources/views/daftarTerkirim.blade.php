@@ -28,7 +28,7 @@
                     <td>{{ $laporan->instansi_penerima }}</td>
                     <td>{{ $laporan->alamat_instansi }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Detail</a>
+                        <a href="{{route('konfirmasi-pengiriman.show', $laporan->id)}}" class="btn btn-primary">Detail</a>
                         <a href="/tindak-lanjut" class="btn btn-success">Tindak Lanjut</a>
                     </td>
                 </tr>

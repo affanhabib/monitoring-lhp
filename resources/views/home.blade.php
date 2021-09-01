@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">Daftar Laporan Terkirim</h5>
                     <p class="card-text">Pada bagian ini terdapat daftar laporan yang sudah dikirim.</p>
-                    <a href="/daftar-laporan-terkirim" class="stretched-link"></a>
+                    <a href="{{route('konfirmasi-pengiriman.index')}}" class="stretched-link"></a>
                 </div>
             </div>
         @endif
