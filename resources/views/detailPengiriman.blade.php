@@ -115,7 +115,7 @@
                                 <p>Tanda Tangan Penerima</p>
                             </div>
                             <div class="row">
-                                <img src="{{ asset('image/') }}/{{$laporans->image}}" alt="" width="10%" height="10%">
+                                <img src="{{ asset('image/') }}/{{$laporans->image}}" alt="" width="100%" height="100%">
                             </div>
                         </div>
                     </div>
