@@ -93,19 +93,13 @@
             <div id='map' style='width: 100%; height: 400px;'></div>
             <div class="pt-2">
                 <form action="" method="" enctype="multipart/form-data">
-                    @csrf
-                    <!-- @method('PUT') -->
-                    <div class="form-group" id="coordinates">
-                        <label for="longitude">Longitude</label>
-                        <input type="text" class="form-control" name="longitude" id="longitude" value="{{$laporans->longitude}}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="latitude">Latitude</label>
-                        <input type="text" class="form-control" name="latitude" id="latitude" value="{{$laporans->latitude}}" readonly>
-                    </div>
                     <div class="form-group">
                         <label for="">Nama Laporan</label>
                         <input type="text" class="form-control" name="namaLaporan" id="namaLaporan" value="{{$laporans->nama_laporan}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Waktu Diterima</label>
+                        <input type="text" class="form-control" name="date" id="date" value="{{$laporans->updated_at}}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="">Instansi Penerima</label>
@@ -116,26 +110,33 @@
                         <input type="text" class="form-control" name="namaPenerima" id="namaPenerima" value="{{$laporans->nama_penerima}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Unggah Foto Tanda Tangan Terima Laporan</label>
-                        <input type="file" class="form-control" id="gambarLaporan" name="gambarLaporan" accept="image/jpeg, image/png">
+                        <div class="col">
+                            <div class="row">
+                                <p>Tanda Tangan Penerima</p>
+                            </div>
+                            <div class="row">
+                                <img src="{{ asset('image/') }}/{{$laporans->image}}" alt="" width="10%" height="10%">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">Keterangan</label>
                         <textarea class="form-control" id="keterangan" name="keterangan" rows='3' readonly>{{$laporans->keterangan}}</textarea>
                     </div>
                     <a href="{{route('konfirmasi-pengiriman.index')}}" class="btn btn-primary">Kembali</a>
-                    <!-- <button type="submit" class="btn btn-primary">Kembali</button> -->
                 </form>
             </div>
         </div>
     </div>
     <script>
+        var coordinate = <?php echo "[".$laporans->longitude.", ".$laporans->latitude."]" ?>;
+
         mapboxgl.accessToken = 'pk.eyJ1IjoiYWZmYW5oYWJpYjExIiwiYSI6ImNrc3pvMjR3czJlaTcyb3F6aW9zODFpZ20ifQ.-sESoz0VZ57XtcvhNsKRQg';
         var map = new mapboxgl.Map({
 	        container: 'map', // container id
 	        style: 'mapbox://styles/mapbox/streets-v11', // style URL
-	        center: [117.75715627739743, -4.80390981848582], // starting position [lng, lat]
-	        zoom: 3 // starting zoom
+	        center: coordinate, // starting position [lng, lat]
+	        zoom: 15 // starting zoom
 	    });
 
 	    map.addControl(
@@ -147,28 +148,11 @@
 			})
 		);
 
-		var marker = new mapboxgl.Marker({
-			draggable: true
-		})
-			.setLngLat([117.75715627739743, -4.80390981848582])
-			.addTo(map);
-
-		function onDragEnd() {
-			var lngLat = marker.getLngLat();
-			coordinates.style.display = 'block';
-			document.getElementById('longitude').value = lngLat.lng;
-			document.getElementById('latitude').value = lngLat.lat;
-		}
-			 
-		marker.on('dragend', onDragEnd);
-
 		map.addControl(new mapboxgl.NavigationControl());
 
-		ClassicEditor
-	        .create( document.querySelector( '#deskripsi' ) )
-	        .catch( error => {
-	            console.error( error );
-        });
+	    var marker = new mapboxgl.Marker()
+			.setLngLat(coordinate)
+			.addTo(map);
     </script>
 </body>
 </html>
