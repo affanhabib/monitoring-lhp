@@ -20,8 +20,14 @@
                 <input type="date" class="form-control" id="tanggalTindakLanjut" name="tanggalTindakLanjut" value="{{$tindakLanjuts->tanggal_tindaklanjut}}" readonly>
             </div>
             <div class="form-group">
-                <label for="">Lampiran</label>
-                <input type="file" class="form-control" id="lampiran" name="lampiran" value="{{$tindakLanjuts->file}}" readonly>
+                <div class="col">
+                    <div class="row">
+                        <p>Lampiran</p>
+                    </div>
+                    <div class="row">
+                        <a href="{{ asset('lampiran/') }}/{{$tindakLanjuts->file}}" target="_blank">lampiran</a>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="">Keterangan</label>

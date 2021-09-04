@@ -24,6 +24,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQhkowMWdixaf-9l-d7rBSNBWdK_38sGA&callback=initMap"></script>
 </head>
 <body>
     <div>
@@ -129,45 +130,72 @@
         </div>
     </div>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiYWZmYW5oYWJpYjExIiwiYSI6ImNrc3pvMjR3czJlaTcyb3F6aW9zODFpZ20ifQ.-sESoz0VZ57XtcvhNsKRQg';
-        var map = new mapboxgl.Map({
-	        container: 'map', // container id
-	        style: 'mapbox://styles/mapbox/streets-v11', // style URL
-	        center: [117.75715627739743, -4.80390981848582], // starting position [lng, lat]
-	        zoom: 3 // starting zoom
-	    });
+        // mapboxgl.accessToken = 'pk.eyJ1IjoiYWZmYW5oYWJpYjExIiwiYSI6ImNrc3pvMjR3czJlaTcyb3F6aW9zODFpZ20ifQ.-sESoz0VZ57XtcvhNsKRQg';
+        // var map = new mapboxgl.Map({
+	    //     container: 'map', // container id
+	    //     style: 'mapbox://styles/mapbox/streets-v11', // style URL
+	    //     center: [117.75715627739743, -4.80390981848582], // starting position [lng, lat]
+	    //     zoom: 3 // starting zoom
+	    // });
 
-	    map.addControl(
-			new mapboxgl.GeolocateControl({
-				positionOptions: {
-					enableHighAccuracy: true
-				},
-				trackUserLocation: true
-			})
-		);
+	    // map.addControl(
+		// 	new mapboxgl.GeolocateControl({
+		// 		positionOptions: {
+		// 			enableHighAccuracy: true
+		// 		},
+		// 		trackUserLocation: true
+		// 	})
+		// );
 
-		var marker = new mapboxgl.Marker({
-			draggable: true
-		})
-			.setLngLat([117.75715627739743, -4.80390981848582])
-			.addTo(map);
+		// var marker = new mapboxgl.Marker({
+		// 	draggable: true
+		// })
+		// 	.setLngLat([117.75715627739743, -4.80390981848582])
+		// 	.addTo(map);
 
-		function onDragEnd() {
-			var lngLat = marker.getLngLat();
-			coordinates.style.display = 'block';
-			document.getElementById('longitude').value = lngLat.lng;
-			document.getElementById('latitude').value = lngLat.lat;
-		}
+		// function onDragEnd() {
+		// 	var lngLat = marker.getLngLat();
+		// 	coordinates.style.display = 'block';
+		// 	document.getElementById('longitude').value = lngLat.lng;
+		// 	document.getElementById('latitude').value = lngLat.lat;
+		// }
 			 
-		marker.on('dragend', onDragEnd);
+		// marker.on('dragend', onDragEnd);
 
-		map.addControl(new mapboxgl.NavigationControl());
+		// map.addControl(new mapboxgl.NavigationControl());
 
-		ClassicEditor
-	        .create( document.querySelector( '#deskripsi' ) )
-	        .catch( error => {
-	            console.error( error );
-        });
+		// ClassicEditor
+	    //     .create( document.querySelector( '#deskripsi' ) )
+	    //     .catch( error => {
+	    //         console.error( error );
+        // });
+        x = navigator.geolocation;
+
+        x.getCurrentPosition(success, failure);
+
+        function success(position) {
+            var myLat = position.coords.latitude;
+            var myLong = position.coords.longitude;
+
+            document.getElementById('longitude').value = myLong;
+			document.getElementById('latitude').value = myLat;            
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiYWZmYW5oYWJpYjExIiwiYSI6ImNrc3pvMjR3czJlaTcyb3F6aW9zODFpZ20ifQ.-sESoz0VZ57XtcvhNsKRQg';
+            var map = new mapboxgl.Map({
+                container: 'map', // container id
+                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                center: [myLong, myLat], // starting position [lng, lat]
+                zoom: 19 // starting zoom
+            });
+
+            var marker = new mapboxgl.Marker({
+                draggable: false
+            })
+                .setLngLat([myLong, myLat])
+                .addTo(map);
+        }
+
+        function failure() {}
     </script>
 </body>
 </html>
