@@ -32,3 +32,5 @@ Route::get('/tambah-pengiriman-laporan', function () { return view('tambahLapora
 Route::resource('/konfirmasi-pengiriman', 'KonfirmasiLaporanController')->middleware('checkRole:pengirim,tl');
 //Route::get('/tindak-lanjut', function () { return view('tindakLanjut'); })->middleware('checkRole:tl');
 Route::resource('/tindak-lanjut', 'TindakLanjutController')->middleware(['checkRole:tl']);
+Route::get('/tindak-lanjut/{tindak_lanjut}/create','TindakLanjutController@createTindakLanjut')->name('tindak-lanjut.createtindaklanjut')->middleware(['checkRole:tl']);
+Route::match(['put', 'patch'],'/tindak-lanjuts/{tindak_lanjut}','TindakLanjutController@storeTindakLanjut')->name('tindak-lanjuts.storetindaklanjut')->middleware(['checkRole:tl']);

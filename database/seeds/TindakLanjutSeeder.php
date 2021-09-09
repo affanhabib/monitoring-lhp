@@ -15,10 +15,12 @@ class TindakLanjutSeeder extends Seeder
         //
         DB::table('tindak_lanjut')->insert([
             'jumlah_tindaklanjut' => 1,
+            'jumlah_rekomendasi' => 1,
             'tanggal_tindaklanjut' => Carbon::now()->format('Y-m-d'),
             'laporan_id' => 3,
             'file' => 'documents-1630418853.pdf',
             'keterangan' => 'laporan telah diterima receptionis dan akan diteruskan',
+            'rekomendasi' => 'memberikan rekomendasi untuk mengupload file ini',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

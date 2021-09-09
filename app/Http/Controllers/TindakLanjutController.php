@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TindakLanjut;
+use File;
 
 class TindakLanjutController extends Controller
 {
@@ -25,6 +26,7 @@ class TindakLanjutController extends Controller
     public function create($id)
     {
         //
+        
        
     }
 
@@ -37,6 +39,7 @@ class TindakLanjutController extends Controller
     public function store(Request $request, $id)
     {
         //
+       
                 
     }
 
@@ -63,7 +66,9 @@ class TindakLanjutController extends Controller
     public function edit($id)
     {
         //
-        return view('tindakLanjut', compact('id'));
+        $tindakLanjuts = TindakLanjut::where('id', $id)->first();
+        //dd($tindakLanjuts);
+        return view('detailTindakLanjut', compact('tindakLanjuts'));
     }
 
     /**
@@ -76,21 +81,30 @@ class TindakLanjutController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $tindakLanjuts = new Tindaklanjut();
+        $tindakLanjuts = TindakLanjut::findOrFail($id);
+
+        $fileOld = TindakLanjut::where('id',$id)->value('file');
+        
+        //dd($fileOld);
+
+        if($fileOld!=null){
+            File::delete(public_path('lampiran/').$fileOld);
+        }
 
         $fileName = $request->lampiran->getClientOriginalName() . '-' . time() . '.' . $request->lampiran->extension();
         
         $request->lampiran->move(public_path('lampiran'), $fileName);
 
-        $tindakLanjuts->laporan_id = $id;
         $tindakLanjuts->jumlah_tindaklanjut = $request->input('jumlahTindakLanjut');
+        $tindakLanjuts->jumlah_rekomendasi = $request->input('jumlahRekomendasi');
         $tindakLanjuts->tanggal_tindaklanjut = $request->input('tanggalTindakLanjut');
         $tindakLanjuts->file = $fileName;
         $tindakLanjuts->keterangan = $request->input('keterangan');
+        $tindakLanjuts->rekomendasi = $request->input('rekomendasi');
 
         $tindakLanjuts->save();
 
-        return redirect('daftar-laporan-terkirim')->with('success', 'Tindak Lanjut Berhasil Dibuat');
+        return redirect('daftar-laporan-terkirim')->with('success', 'Data Berhasil Diperbarui');
        
     }
 
@@ -103,5 +117,32 @@ class TindakLanjutController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function createTindakLanjut($id)
+    {  
+        return view('tindakLanjut', compact('id'));        
+    }
+
+    public function storeTindakLanjut(Request $request, $id)
+    {
+        $tindakLanjuts = new Tindaklanjut();
+
+        $fileName = $request->lampiran->getClientOriginalName() . '-' . time() . '.' . $request->lampiran->extension();
+        
+        $request->lampiran->move(public_path('lampiran'), $fileName);
+
+        $tindakLanjuts->laporan_id = $id;
+        $tindakLanjuts->jumlah_rekomendasi = $request->input('jumlahRekomendasi');;
+        $tindakLanjuts->jumlah_tindaklanjut = $request->input('jumlahTindakLanjut');
+        $tindakLanjuts->tanggal_tindaklanjut = $request->input('tanggalTindakLanjut');
+        $tindakLanjuts->file = $fileName;
+        $tindakLanjuts->keterangan = $request->input('keterangan');
+        $tindakLanjuts->rekomendasi = $request->input('rekomendasi');
+
+        $tindakLanjuts->save();
+
+        return redirect('daftar-laporan-terkirim')->with('success', 'Tindak Lanjut Berhasil Dibuat');
+        
     }
 }

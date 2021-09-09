@@ -9,6 +9,21 @@
         </ol>
     </nav>
     <h4 class="mb-3">Daftar Laporan Terkirim</h4>
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
+
+    @if(\Session::has('success'))
+        <div class="alert alert-success">
+            <p>{{\Session::get('success')}}</p>
+        </div>
+    @endif
     <table class="table table-striped">
         <thead>
             <tr>
@@ -31,7 +46,7 @@
                     <td>
                         <a href="{{route('konfirmasi-pengiriman.show', $laporan->id)}}" class="btn btn-primary">Detail</a>
                         @if($laporan->getTindakLanjutRelation == null)
-                            <a href="{{route('tindak-lanjut.edit',$laporan->id)}}" class="btn btn-success">Tindak Lanjut</a>
+                            <a href="{{route('tindak-lanjut.createtindaklanjut',$laporan->id)}}" class="btn btn-success">Tindak Lanjut</a>
                         @else
                             <a href="{{route('tindak-lanjut.show', $laporan->id)}}" class="btn btn-success">Detail Tindak Lanjut</a>
                         @endif

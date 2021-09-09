@@ -10,12 +10,16 @@
             </ol>
         </nav>
         <h4 class="mb-3">Tindak Lanjut Laporan</h4>
-        <form action="{{route('tindak-lanjut.update', $id)}}" method="POST" enctype="multipart/form-data">>
+        <form action="{{route('tindak-lanjuts.storetindaklanjut', $id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="">Jumlah Tindak Lanjut</label>
                 <input type="text" class="form-control" id="jumlahTindakLanjut" name="jumlahTindakLanjut" required>
+            </div>
+            <div class="form-group">
+                <label for="">Jumlah Rekomendasi</label>
+                <input type="text" class="form-control" id="jumlahRekomendasi" name="jumlahRekomendasi" required>
             </div>
             <div class="form-group">
                 <label for="">Tanggal Tindak Lanjut</label>
@@ -28,6 +32,10 @@
             <div class="form-group">
                 <label for="">Keterangan</label>
                 <textarea class="form-control" id="keterangan" name="keterangan" rows='3' required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Rekomendasi</label>
+                <textarea class="form-control" id="rekomendasi" name="rekomendasi" rows='3' required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Tambah Tindak Lanjut</button>
         </form>
