@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     @if(Request::segment(3)=='edit')
-                        <input type="file" class="form-control" id="lampiran" name="lampiran" required>
+                        <input type="file" class="form-control" id="lampiran" name="lampiran">
                     @endif
                 </div>
                 <!-- @if(Request::segment(3)=='edit')

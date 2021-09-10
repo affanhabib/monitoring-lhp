@@ -81,24 +81,33 @@ class TindakLanjutController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //dd($request->lampiran);
         $tindakLanjuts = TindakLanjut::findOrFail($id);
 
         $fileOld = TindakLanjut::where('id',$id)->value('file');
+
+        if($request->lampiran == null){
+
+            $tindakLanjuts->file = $fileOld;
+            
+        }else{
+            if($fileOld!=null){
+                File::delete(public_path('lampiran/').$fileOld);
+            };
+
+            $fileName = $request->lampiran->getClientOriginalName() . '-' . time() . '.' . $request->lampiran->extension();
+        
+            $request->lampiran->move(public_path('lampiran'), $fileName);
+
+            $tindakLanjuts->file = $fileName;
+
+        }
         
         //dd($fileOld);
-
-        if($fileOld!=null){
-            File::delete(public_path('lampiran/').$fileOld);
-        }
-
-        $fileName = $request->lampiran->getClientOriginalName() . '-' . time() . '.' . $request->lampiran->extension();
-        
-        $request->lampiran->move(public_path('lampiran'), $fileName);
-
         $tindakLanjuts->jumlah_tindaklanjut = $request->input('jumlahTindakLanjut');
         $tindakLanjuts->jumlah_rekomendasi = $request->input('jumlahRekomendasi');
         $tindakLanjuts->tanggal_tindaklanjut = $request->input('tanggalTindakLanjut');
-        $tindakLanjuts->file = $fileName;
+       
         $tindakLanjuts->keterangan = $request->input('keterangan');
         // $tindakLanjuts->rekomendasi = $request->input('rekomendasi');
 
