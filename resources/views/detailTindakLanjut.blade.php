@@ -51,10 +51,10 @@
                     <label for="">Keterangan</label>
                     <textarea class="form-control" id="keterangan" name="keterangan" rows='3'>{{$tindakLanjuts->keterangan}}</textarea>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="">Rekomendasi</label>
                     <textarea class="form-control" id="rekomendasi" name="rekomendasi" rows='3'>{{$tindakLanjuts->rekomendasi}}</textarea>
-                </div>
+                </div> --}}
             @if(Request::segment(3)==null)
             </fieldset>
             <a href="{{route('konfirmasi-pengiriman.index')}}" class="btn btn-primary">Kembali</a>
