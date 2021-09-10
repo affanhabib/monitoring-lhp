@@ -33,10 +33,10 @@
                 <label for="">Keterangan</label>
                 <textarea class="form-control" id="keterangan" name="keterangan" rows='3' required></textarea>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="">Rekomendasi</label>
                 <textarea class="form-control" id="rekomendasi" name="rekomendasi" rows='3' required></textarea>
-            </div>
+            </div> --}}
             <button type="submit" class="btn btn-primary">Tambah Tindak Lanjut</button>
         </form>
     </div>
