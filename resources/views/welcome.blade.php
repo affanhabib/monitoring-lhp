@@ -67,13 +67,13 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height" style="background-color: #ECF0F1">
+        <div class="flex-center position-ref full-height text-white" style="background-color: #0057A0">
             @if (Route::has('login'))
                 <div class="top-right links" >
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}" class="text-white">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" class="text-white">Login</a>
 
                         {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -85,7 +85,7 @@
             <div class="content">
                 <div class="m-b-md">
                     <img src="{{ asset('img/BPKP_Logo.png') }}" alt="">
-                    <h1 class="mt-5">Dashboard Pemantauan Laporan Hasil Pengawasan</h1>
+                    <h1 class="mt-5" >Dashboard Pemantauan Laporan Hasil Pengawasan</h1>
                 </div>
 
                 {{-- <div class="links">
