@@ -138,7 +138,7 @@ class TindakLanjutController extends Controller
         $tindakLanjuts->tanggal_tindaklanjut = $request->input('tanggalTindakLanjut');
         $tindakLanjuts->file = $fileName;
         $tindakLanjuts->keterangan = $request->input('keterangan');
-        $tindakLanjuts->rekomendasi = $request->input('rekomendasi');
+        // $tindakLanjuts->rekomendasi = $request->input('rekomendasi');
 
         $tindakLanjuts->save();
 

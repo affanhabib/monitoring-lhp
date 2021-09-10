@@ -25,7 +25,7 @@
                     <input type="text" class="form-control" id="jumlahRekomendasi" name="jumlahRekomendasi" value="{{$tindakLanjuts->jumlah_rekomendasi}}">
                 </div>
                 <div class="form-group">
-                    <label for="">Tanggal Tindak Lanjut</label>
+                    <label for="">Tanggal Tindak Lanjut Terakhir Diberikan</label>
                     <input type="date" class="form-control" id="tanggalTindakLanjut" name="tanggalTindakLanjut" value="{{$tindakLanjuts->tanggal_tindaklanjut}}">
                 </div>
                 <div class="form-group">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     @if(Request::segment(3)=='edit')
-                        <input type="file" class="form-control" id="lampiran" name="lampiran">
+                        <input type="file" class="form-control" id="lampiran" name="lampiran" required>
                     @endif
                 </div>
                 <!-- @if(Request::segment(3)=='edit')
