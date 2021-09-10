@@ -34,3 +34,4 @@ Route::resource('/konfirmasi-pengiriman', 'KonfirmasiLaporanController')->middle
 Route::resource('/tindak-lanjut', 'TindakLanjutController')->middleware(['checkRole:tl']);
 Route::get('/tindak-lanjut/{tindak_lanjut}/create','TindakLanjutController@createTindakLanjut')->name('tindak-lanjut.createtindaklanjut')->middleware(['checkRole:tl']);
 Route::match(['put', 'patch'],'/tindak-lanjuts/{tindak_lanjut}','TindakLanjutController@storeTindakLanjut')->name('tindak-lanjuts.storetindaklanjut')->middleware(['checkRole:tl']);
+Route::match(['put', 'patch'],'/tindaks-lanjut/{tindak_lanjut}','TindakLanjutController@konfirmasiTindakLanjut')->name('tindak-lanjut.konfirmasitindaklanjut')->middleware(['checkRole:tl']);

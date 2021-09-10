@@ -154,4 +154,13 @@ class TindakLanjutController extends Controller
         return redirect('daftar-laporan-terkirim')->with('success', 'Tindak Lanjut Berhasil Dibuat');
         
     }
+
+    public function konfirmasiTindakLanjut($id)
+    {
+        $tindakLanjuts = TindakLanjut::findOrFail($id);
+        //dd($tindakLanjuts);
+        $tindakLanjuts->isDone = 2;
+        $tindakLanjuts->save();
+        return redirect('daftar-laporan-terkirim')->with('success', 'Tindak Lanjut Berhasil Dikonfirmasi');
+    }
 }

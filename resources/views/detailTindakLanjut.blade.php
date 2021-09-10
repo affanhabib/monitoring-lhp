@@ -58,10 +58,40 @@
             @if(Request::segment(3)==null)
             </fieldset>
             <a href="{{route('konfirmasi-pengiriman.index')}}" class="btn btn-primary">Kembali</a>
-            <a href="{{route('tindak-lanjut.edit', $tindakLanjuts->id)}}" class="btn btn-warning">Edit</a>
             @else
-            <button class="btn btn-success">Simpan</button>
+            <button type="submit" class="btn btn-success">Simpan</button>
+            @endif
+            @if(Request::segment(3) == null && $tindakLanjuts->isDone == 0)
+            <a href="{{route('tindak-lanjut.edit', $tindakLanjuts->id)}}" class="btn btn-warning">Edit</a>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">Selesai</button>
             @endif           
         </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Tindak Lanjut</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('tindak-lanjut.konfirmasitindaklanjut', $tindakLanjuts->id)}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+                <div class="modal-body">
+                    <p>Apakah anda yakin menyelesaikan Tindak Lanjut laporan ini?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Konfirmasi</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+
     </div>
 @endsection
+

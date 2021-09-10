@@ -23,6 +23,7 @@ class CreateTindaklanjutTable extends Migration
             $table->string('file');
             $table->text('keterangan')->nullable();
             $table->text('rekomendasi')->nullable();
+            $table->enum('isDone', [0, 1])->default(0);
             $table->timestamps();
         });
     }
