@@ -46,7 +46,7 @@
                     <td>
                         <a href="{{route('konfirmasi-pengiriman.show', $laporan->id)}}" class="btn btn-primary">Detail</a>
                         @if($laporan->getTindakLanjutRelation == null)
-                            <a href="{{route('tindak-lanjut.createtindaklanjut',$laporan->id)}}" class="btn btn-success">Tindak Lanjut</a>
+                            <a href="{{route('tindak-lanjut.createtindaklanjut',$laporan->id)}}" class="btn btn-danger">Tindak Lanjut</a>
                         @else
                             <a href="{{route('tindak-lanjut.show', $laporan->id)}}" class="btn btn-success">Detail Tindak Lanjut</a>
                         @endif

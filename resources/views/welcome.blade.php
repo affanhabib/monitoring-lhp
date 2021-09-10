@@ -67,13 +67,13 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height text-white" style="background-color: #003780">
+        <div class="flex-center position-ref full-height" style="background-color: #ECF0F1">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links" >
                     @auth
-                        <a href="{{ url('/home') }}" class="text-white">Home</a>
+                        <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-white">Login</a>
+                        <a href="{{ route('login') }}">Login</a>
 
                         {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
