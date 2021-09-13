@@ -67,7 +67,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height text-white" style="background-color: #0057A0">
+        <div class="flex-center position-ref full-height text-white" style="background-color: #3498DB">
             @if (Route::has('login'))
                 <div class="top-right links" >
                     @auth

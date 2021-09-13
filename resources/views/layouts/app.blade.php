@@ -26,7 +26,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #0057A0">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #3498DB">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/home') }}">
                     {{-- Dashboard Pemantauan Laporan Hasil Pengawasan --}}
