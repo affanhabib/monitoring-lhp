@@ -17,10 +17,12 @@ class KonfirmasiLaporanController extends Controller
     public function index()
     {
         //
-        $laporans = Laporan::all();
+        // $laporans = Laporan::all();
+        $data['laporans'] = Laporan::all();
+        $data['tindakLanjuts'] = TindakLanjut::all();
         // echo "<pre>";
         // print_r($laporans);
-        return view('daftarTerkirim', compact('laporans'));
+        return view('daftarTerkirim', ['data'=>$data]);
     }
 
     /**
