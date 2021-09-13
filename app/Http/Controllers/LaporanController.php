@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Laporan;
+use App\Models\TindakLanjut;
 
 class LaporanController extends Controller
 {
@@ -128,8 +129,10 @@ class LaporanController extends Controller
     public function terkirim()
     {
         // //
-        $laporans = Laporan::all();
-        return view('daftarTerkirim', compact('laporans'));
+        $data['laporans'] = Laporan::all();
+        $data['tindakLanjuts'] = TindakLanjut::all();
+        // return view('daftarTerkirim', compact('laporans'));
+        return view('daftarTerkirim', ['data'=>$data]);
     }
 
 }

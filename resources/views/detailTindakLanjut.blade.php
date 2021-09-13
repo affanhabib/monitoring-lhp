@@ -17,12 +17,12 @@
             <fieldset disabled>
             @endif
                 <div class="form-group">
-                    <label for="">Jumlah Tindak Lanjut</label>
-                    <input type="text" class="form-control" id="jumlahTindakLanjut" name="jumlahTindakLanjut" value="{{$tindakLanjuts->jumlah_tindaklanjut}}">
-                </div>
-                <div class="form-group">
                     <label for="">Jumlah Rekomendasi</label>
                     <input type="text" class="form-control" id="jumlahRekomendasi" name="jumlahRekomendasi" value="{{$tindakLanjuts->jumlah_rekomendasi}}">
+                </div>
+                <div class="form-group">
+                    <label for="">Jumlah Tindak Lanjut</label>
+                    <input type="text" class="form-control" id="jumlahTindakLanjut" name="jumlahTindakLanjut" value="{{$tindakLanjuts->jumlah_tindaklanjut}}">
                 </div>
                 <div class="form-group">
                     <label for="">Tanggal Tindak Lanjut Terakhir Diberikan</label>

@@ -32,11 +32,12 @@
                 <th scope="col">Instansi Penerima</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">Action</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
             @php $i=1 @endphp
-            @foreach($laporans as $laporan)
+            @foreach($data['laporans'] as $laporan)
             @if($laporan->isTerkirim == 1)
                 <tr>
                     <td>{{ $i++ }}</td>
@@ -50,6 +51,17 @@
                         @else
                             <a href="{{route('tindak-lanjut.show', $laporan->id)}}" class="btn btn-success">Detail Tindak Lanjut</a>
                         @endif
+                    </td>
+                    <td>
+                        @foreach ($data['tindakLanjuts'] as $item)
+                            @if ($laporan->id == $item->laporan_id)
+                                @if ($item->isDone == 1)
+                                    <p>Selesai</p>
+                                @else
+                                    <p>Belum Selesai</p>
+                                @endif
+                            @endif
+                        @endforeach
                     </td>
                 </tr>
             @endif

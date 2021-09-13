@@ -14,12 +14,12 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="">Jumlah Tindak Lanjut</label>
-                <input type="text" class="form-control" id="jumlahTindakLanjut" name="jumlahTindakLanjut" required>
-            </div>
-            <div class="form-group">
                 <label for="">Jumlah Rekomendasi</label>
                 <input type="text" class="form-control" id="jumlahRekomendasi" name="jumlahRekomendasi" required>
+            </div>
+            <div class="form-group">
+                <label for="">Jumlah Tindak Lanjut</label>
+                <input type="text" class="form-control" id="jumlahTindakLanjut" name="jumlahTindakLanjut" required>
             </div>
             <div class="form-group">
                 <label for="">Tanggal Tindak Lanjut</label>
